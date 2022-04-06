@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Bildekarusell try 1</title>
+    <style>
+        body{
+            background-color: #e0e0e0;
+        }
+        #bildekarusell{
+            width: 600px;
+            height: 150px;
+            position: relative;
+            margin: 150px auto;
+            overflow: hidden;
+        }
+        .bilde{
+            width: 600px;
+            height: 150px;
+            position: absolute;
+            left: 0px;
+        }
+        @keyframes innFraHoyre{
+            from { left: 600px; }
+            to { left: 0px; }
+        }
+        @keyframes utTilVenstre{
+            from { left: 0px; }
+            to { left: -600px; }
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div id="Bildekarusell">
+        <div class="bilde"> </div>
+        <div class="bilde"> </div>
+        <div class="bilde"> </div>
+        <div class="bilde"> </div>
+    </div>
+
+    <script>
+        var indexSynligBilde = 0;
+        var indexNesteBilde;
+        var tid = 3000; 
+        
+        var bildefiler = 
+        ["plasser bilder her :O "];
+        
+        var bilder = document.querySelectorAll(".bilde");
+
+        for (var i = 0; i < bilder.length; i++) {
+            bilder[i].style.backgroundImage = "url(bilder/" + bildefiler[i] + "/";
+
+            if (i != 0) {
+                bilder[i].style.display = "none";
+            }
+        }
+
+        function flytt() {
+            if (indexSynligBilde === bilder.length - 1) {
+                indexNesteBilde = 0; 
+            } else{
+                indexNesteBilde = indexsSynligBilde + 1;
+            }
+
+            bilder[indexNesteBilde].style.left = "800px";
+            bilder[indexNesteBilde].style.display = "initial";
+            bilder[indexNesteBilde].style.animation = "innFraHoyre 2s forwards";
+
+            bilder[indexNesteBilde].style.animation = "utTilVenstre 2s forwards";
+
+            indexSynligBilde = indexsNesteBilde;
+
+            setTimeout (flytt, tid);
+        }
+
+    </script>
+
+</body>
+</html>
