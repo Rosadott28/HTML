@@ -47,12 +47,12 @@
         var tid = 3000; 
         
         var bildefiler = 
-        ["plasser bilder her :O "];
+        ["b1", "b2", "b3","b4"];
         
         var bilder = document.querySelectorAll(".bilde");
 
         for (var i = 0; i < bilder.length; i++) {
-            bilder[i].style.backgroundImage = "url(bilder/" + bildefiler[i] + "/";
+            bilder[i].style.backgroundImage = "url(kap19/" + bildefiler[i] + "/";
 
             if (i != 0) {
                 bilder[i].style.display = "none";
@@ -63,7 +63,7 @@
             if (indexSynligBilde === bilder.length - 1) {
                 indexNesteBilde = 0; 
             } else{
-                indexNesteBilde = indexsSynligBilde + 1;
+                indexNesteBilde = indexSynligBilde + 1;
             }
 
             bilder[indexNesteBilde].style.left = "800px";
@@ -72,7 +72,7 @@
 
             bilder[indexNesteBilde].style.animation = "utTilVenstre 2s forwards";
 
-            indexSynligBilde = indexsNesteBilde;
+            indexSynligBilde = indexNesteBilde;
 
             setTimeout (flytt, tid);
         }
