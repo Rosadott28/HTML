@@ -1,0 +1,34 @@
+var buttonEl = document.querySelector("button");
+var judgeEl = document.querySelectorAll(".judge");
+var pEl = document.querySelector("p");
+
+buttonEl.addEventListener("click", willy);
+
+function willy() {
+
+    var answers = [];
+    var total = 0;
+    var isValid = true;
+
+    judgeEl.forEach(judge => {
+        var judgeV = judge.valueAsNumber;
+        if (judgeV >20 || judgeV <1 || judgeV % 0.5 !=0) {
+            pEl.innerHTML = "stop"
+            isValid = false;
+            return;
+        }
+        answers.push(judgeV);
+    });
+    
+    if (!isValid) {
+        return;
+    }
+    answers.sort((a,b) => a - b );
+    answers.splice(0,1);
+    answers.splice(3,1);
+
+    answers.forEach(matter => {
+        total += matter;
+    });
+    pEl.innerHTML = "total: " + total;
+}
