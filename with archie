@@ -1,0 +1,26 @@
+var buttonEl = document.querySelector("button");
+var meterEl = document.querySelector("input");
+var pEl = document.querySelector("p");
+var points = 0;
+var meterN = 0;
+
+ buttonEl.addEventListener("click", () => {
+    meterN = meterEl.valueAsNumber;
+
+    if ( meterN >= 70 && meterN < 80 ){
+        points = 2.2;
+    }
+    else if (meterN >= 80 && meterN < 100){
+        points = 2;
+    }
+    else if (meterN >= 100 && meterN < 170){
+        points = 1.8;
+    }
+    else if (meterN >= 170 && meterN < 250){
+        points = 1.2;
+    }
+    else {
+        pEl.innerHTML = "piece of shit";
+    }
+    console.log(points);
+ });
