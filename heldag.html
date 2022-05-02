@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skudd på blink</title>
+    <style>
+        #bilde{
+            display: block;
+            margin: auto;
+            background-image: url('blink.png');
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bilde" width="500px" height="500px" > </canvas>
+
+    <button> click </button>
+    <p id="resultat">poengsum: </p>
+
+    <div id="skudd"> </div>
+
+    <script>
+
+        var buttonEl = document.querySelector("button");
+        var bodyEl = document.querySelector("body");
+        var pEl = document.querySelector("p");
+        var resultatEl = document.querySelector("#resultat");
+        var skuddEl = document.querySelector("#skudd");
+        var canvas = document.querySelector("#bilde");
+        var ctx = canvas.getContext("2d");
+        var x = "" ;
+        var y = "" ;
+        var points = 0;
+        var tall = 0;
+        var sum = 0;
+
+        buttonEl.addEventListener("click", random);
+
+        function random() {
+            var treff = [];
+            x = Math.floor(Math.random()*500)+1;
+            y = Math.floor(Math.random()*500)+1;
+            points += 1;
+            var isValid = true;
+
+            if (points === 6) {
+                points = 0;
+                var stop = document.createElement("p");
+                stop.innerHTML = "stop";
+                skuddEl.appendChild(stop);
+                isValid = false;
+                return; 
+                //gjør slik at den ikke fullfører resten av koden, altså ikke lager den røde prikken.
+            }
+            if (!isValid) {
+                return;
+            }
+            
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = "red";
+            ctx.fill()  
+            //kode på radene ovenfor er tatt fra sirkler, side 228 i IT2 boka av Lars Nersveen
+
+            var ny = document.createElement("p");
+            ny.innerHTML += x + ", " + y + "<br>";
+            skuddEl.appendChild(ny);
+
+            if (x<300 && x>200 && y<300 && y>200 ) {
+                tall = 5;
+                resultatEl.innerHTML += tall;
+            }
+            else if (x<350 && x>150 && y<350 && y>150) {
+                tall = 4;
+                resultatEl.innerHTML += tall;
+            }
+            else if (x<400 && x>100 && y<400 && y>100) {
+                tall= 3;
+                resultatEl.innerHTML += tall;
+            }
+            else if (x<450 && x>50 && y<450 && y>50) {
+                tall = 2;
+                resultatEl.innerHTML += tall;
+            }
+            else { tall = 1; }
+            treff.push(tall); // dytter poengene inn i et array, så det blir lettere å putte inn i en tabell senere.
+            for (let i = 0; i < treff.length; i++) {
+                sum += treff[i]; 
+            }
+
+            resultatEl.innerHTML = "poengsum: " + sum;
+        }
+
+           
+        
+
+
+         
+    </script>
+
+</body>
+</html>
